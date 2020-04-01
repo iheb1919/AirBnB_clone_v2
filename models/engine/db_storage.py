@@ -12,6 +12,7 @@ import os
 from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker, scoped_session
 
+
 class DBStorage():
     """New engine DBStorage
     """
@@ -27,7 +28,7 @@ class DBStorage():
         host = os.getenv("HBNB_MYSQL_HOST")
         database = os.getenv("HBNB_MYSQL_DB")
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
-                                      .format(user,password,host,dbname),
+                                      .format(user, password, host, dbname),
                                       pool_pre_ping=True)
         if environ['HBNB_ENV'] == 'test':
             Base.metadata.drop_all(self.__engine)
