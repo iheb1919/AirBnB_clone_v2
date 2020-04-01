@@ -25,12 +25,14 @@ class FileStorage:
         Return:
             returns a dictionary of __object
         """
-        objj = {}
-        for key, value in self.__objects.items():
+        try:
+            objj = {}
+            for key, value in self.__objects.items():
                 if cls.__name__ in key:
                     objj[key] = value
                     return objj
-        return self.__objects
+        except AttributeError:
+            return self.__objects
 
     def new(self, obj):
         """sets __object to given obj
@@ -67,5 +69,5 @@ class FileStorage:
             if obj is not None:
                 ob = obj.__class__.name__ + "." + obj.id
                 if ob in self.__objects:
-                    del self.__objects[ob]
-                    self.ave()
+                    self.__objects.pop(ob)
+                    self.save()
