@@ -2,10 +2,6 @@
 """This is the user class"""
 from models.base_model import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
 
 class User(BaseModel):
     """This is the class for user
