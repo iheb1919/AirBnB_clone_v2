@@ -5,14 +5,18 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 import models
 
+
 class State(BaseModel):
     """This is the class for State
     Attributes:
         name: input name
     """
-     __tablename__ = "states"
+
+    __tablename__ = "states"
     name = Column(String(128), nullable=False)
-    cities = relationship("City", backref="state", cascade="save-update, delete")
+    cities = relationship("City", backref="state",
+                          cascade="save-update, delete")
+
     @property
     def cities(self):
         """ Getter attribute that returns a dictionary of cities in a state """
