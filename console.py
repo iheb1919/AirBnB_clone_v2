@@ -42,7 +42,6 @@ class HBNBCommand(cmd.Cmd):
             if not line:
                 raise SyntaxError()
             my_list = line.split(" ")
-            obj = eval("{}()".format(my_list[0]))
             y = 0
             dic = {}
             for i in range(0, len(my_list)):
@@ -54,22 +53,17 @@ class HBNBCommand(cmd.Cmd):
                     z = 0
                     while y < len(ar):
                         if ar[y] == "=" and ar[y+1] == "\"" and ar[-1] == "\"":
-                            az = 0
-                            a = ar[y+2:-1]
-                            while az in range(len(a)):
-                                if a[az] == "\"":
-                                    a = a[:az] + "\\" + a[az:]
-                                    my_list[i] = ar[:y+2] + a + "\""
-                                    az = az + 1
-                                az = az + 1
-                            my_list[i] = my_list[i].replace("_", " ")
                             cont = my_list[i].split("=")
-                            dic.update({cont[0]: cont[1]})
+                            s = cont[1][1:-1]
+                            s = s.replace('"', '\\"')
+                            s = s.replace("_", " ")
+                            dic.update({cont[0]: s})
                         elif ar[y] == "=" and (type(eval(ar[y+1:])) is int or type(eval(ar[y+1:])) is float):
                             cont = my_list[i].split("=")
                             dic.update({cont[0]: eval(cont[1])})
                         y = y + 1
-            print(dic)
+            obj = eval("{}()".format(my_list[0]))
+            obj.__dict__.update(dic)
             obj.save()
             print("{}".format(obj.id))
         except SyntaxError:
