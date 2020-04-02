@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
+
 class Place(BaseModel, Base):
     """This is the class for Place
     Attributes:
