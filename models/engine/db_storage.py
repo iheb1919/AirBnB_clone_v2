@@ -45,7 +45,7 @@ class DBStorage():
                 dictt[key] = r
             return dictt
         else:
-            for classe in classes:
+            for classe in self.classes:
                 try:
                     for obj in self.__session.query(eval(classe)).all():
                         ob = classe + '.' + obj.id
