@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """This is the state class"""
-from models.base_model import BaseModel
+
+from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 import models
+from models.city import City
 
 
-class State(BaseModel):
+class State(BaseModel,Base):
     """This is the class for State
     Attributes:
         name: input name
@@ -19,7 +21,8 @@ class State(BaseModel):
 
     @property
     def cities(self):
-        """ Getter attribute that returns a dictionary of cities in a state """
+        """
+        """
         citty = models.storage.all(City)
         dictt = {}
         for key, value in citty.items():
