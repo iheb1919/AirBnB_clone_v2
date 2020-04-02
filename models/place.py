@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This is the place class"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer, Float, String, ForeignKey
+from sqlalchemy import Table, Column, Integer, Float, String, ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -22,6 +22,19 @@ class Place(BaseModel, Base):
         longitude: longitude in float
         amenity_ids: list of Amenity ids
     """
+    place_amenity = Table("place_amenity",
+                          Base.metadata,
+                          Column("place_id",
+                                 String(60),
+                                 ForeignKey('places.id'),
+                                 primary_key=True,
+                                 nullable=False),
+                          Column("amenity_id",
+                                 String(60),
+                                 ForeignKey("amenities.id"),
+                                 primary_key=True,
+                                 nullable=False))
+    
     __tablename__ = "places"
     city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
@@ -38,29 +51,29 @@ class Place(BaseModel, Base):
     amenities = relationship("Amenity", backref="place",
                              secondary="place_amenity", viewonly=False)
 
-    @property
-    def reviews(self):
-        """
-        """
-        dictt = {}
-        rev = models.storage.all(Review)
-        for k, v in rev:
-            if value.id == self.id:
-                dictt[key] = value
-        return (dictt)
+    #@property
+    #def reviews(self):
+    #    """
+    #    """
+    #    dictt = {}
+    #    rev = models.storage.all(Review)
+    #    for k, v in rev:
+    #        if value.id == self.id:
+    #            dictt[key] = value
+    #    return (dictt)
 
-    @property
-    def amenities(self):
-        """
-        """
-        dictt = {}
-        rev = models.storage.all(Amenity)
-        for k, v in rev:
-            if value.id == self.id:
-                dictt[key] = value
-        return (dictt)
+    #@property
+    #def amenities(self):
+    #    """
+    #    """
+    #    dictt = {}
+    #    rev = models.storage.all(Amenity)
+    #    for k, v in rev:
+    #        if value.id == self.id:
+    #            dictt[key] = value
+    #    return (dictt)
 
-    @amenities.setter
-    def amenities(self, obj):
-        if obj.__class__.__name__ == "Amenity":
-            self.amenity_id.append(str(obj.id))
+    #@amenities.setter
+    #def amenities(self, obj):
+    #    if obj.__class__.__name__ == "Amenity":
+    #        self.amenity_id.append(str(obj.id))
