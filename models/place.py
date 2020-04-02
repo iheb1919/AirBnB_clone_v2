@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import create_engine, Column, Integer, Float, String,ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 
 class Place(BaseModel, Base):
