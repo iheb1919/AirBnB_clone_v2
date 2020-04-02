@@ -38,8 +38,8 @@ class Place(BaseModel, Base):
 
     @property
     def reviews(self):
-    """
-    """
+        """
+        """
         dictt = {}
         rev = models.storage.all(Review)
         for k, v in rev:
