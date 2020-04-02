@@ -34,14 +34,15 @@ class Place(BaseModel, Base):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     amenity_ids = []
-    """reviews = relationship('Review', backref="places")
+    reviews = relationship('Review', backref="places")
 
     @property
     def reviews(self):
     """
     """
         dictt = {}
-        for k, v in models.storage.all(Review):
+        rev = models.storage.all(Review)
+        for k, v in rev:
             if value.id == self.id:
                 dictt[key] = value
-        return (dictt)"""
+        return (dictt)
