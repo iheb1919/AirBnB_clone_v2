@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This is the place class"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import create_engine, Column, Integer, Float, String, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, Float, String,ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -33,12 +33,13 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     amenity_ids = []
     reviews = relationship('Review', backref="places")
+
     @property
-        def reviews(self):
-            """ 
-            """
-            dictt = {}
-            for k, v in models.storage.all(Review):
-                if value.id == self.id:
-                    dictt[key] = value
-            return (dictt)
+    def reviews(self):
+        """
+        """
+        dictt = {}
+        for k, v in models.storage.all(Review):
+            if value.id == self.id:
+                dictt[key] = value
+        return (dictt)
