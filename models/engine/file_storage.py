@@ -69,3 +69,7 @@ class FileStorage:
             objj = obj.__class__.__name__ + "." + obj.id
             del self.__objects[objj]
             self.save()
+
+    def close(self):
+        """close"""
+        self.reload()
