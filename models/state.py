@@ -23,9 +23,9 @@ class State(BaseModel, Base):
         def cities(self):
             """
             """
-            citty = models.storage.all(City)
-            dictt = {}
-            for k, v in citty.items():
-                if v.id == self.id:
-                    dictt[k] = va
+            citty = self.id
+            dictt = []
+            for k, v in models.storage.all().items():
+                if "City" in k and v.state_id == self.id:
+                    dictt.append(v)
             return dictt
