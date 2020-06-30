@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """ holds class State"""
 import models
